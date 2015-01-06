@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>URL Adding</title>
+        <style type="text/css">
+       body{
+        font: 16px cursive;
+        text-decoration: bold;
+       }</style>
+    </h:head>
+    <h:body >
+        <center>
+        <f:view>
+            
+            <h:form >
+                <h:panelGrid id="panel" columns="3" border="1" cellpadding="10" cellspacing="1">
+                    <h:outputLabel value="Description:"/><h:inputText validatorMessage="Desciption Required" id="desc" value="#{MessageView.message1.message}" required="true"><f:validateLength minimum="1" maximum="40"></f:validateLength></h:inputText>
+                    <h:message for="desc" style="color:red" />
+                    <h:outputLabel value="URL:"/><h:inputText validatorMessage="URL Required" id="url" value="#{MessageView.message1.URL}" required="true"><f:validateLength minimum="1" maximum="40"></f:validateLength></h:inputText>
+                    <h:message for="url" style="color:red" />
+                </h:panelGrid>
+                <h:commandButton action="#{MessageView.postMessage}" value="Submit"/>
+            </h:form>
+            
+        </f:view>
+        </center>
+    </h:body>
+</html>
+

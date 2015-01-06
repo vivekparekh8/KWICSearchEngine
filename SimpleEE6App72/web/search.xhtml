@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <style type="text/css">
+       body{
+        font: 16px cursive;
+        text-decoration: bold;
+       }</style>
+        <title>Search</title>
+    </h:head>
+    <h:body>
+        <center>
+        <f:view>
+            <h:form>
+                 <h:panelGrid id="panel" columns="2"  cellpadding="10" cellspacing="1">
+                <h:outputLabel value="Enter your keywords:"/><h:inputText  required="true" value="#{MessageView2.keyword}" id="keyword"/>
+                <h:commandButton action="#{MessageView2.searchAnd}" value="Search by AND"/>
+                 <h:commandButton action="#{MessageView2.searchOr}" value="Search by Or"/>
+                 <h:commandButton action="#{MessageView2.searchNot}" value="Search by NOT"/><br/>
+                
+                 </h:panelGrid>
+                <center><h:message for="keyword" style="color:red" ></h:message></center>
+                 </h:form>
+            <h:form>
+               
+                 <c:if test="${not empty MessageView2.set}"> 
+                     <h:dataTable border="1" value="#{MessageView2.set}" var="entry" rows="10" >
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="URL"/>
+                    </f:facet>
+                    <h:dataTable value="#{entry}" var="type" >
+                        <h:column>
+                            <h:outputLink value="#{type.key}" > <h:outputText value="#{type.key}"/></h:outputLink>
+                        </h:column>
+                    </h:dataTable>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Description"/>
+                    </f:facet>
+                    <h:dataTable value="#{entry}" var="values" >
+                        <h:column>
+                            <h:dataTable value="#{values.value}" var="num" >
+                                <h:column>
+                                    <h:outputText value="#{num}"/>
+                                </h:column>
+                            </h:dataTable>
+                        </h:column>
+                    </h:dataTable>
+                </h:column>
+            </h:dataTable>
+            </c:if>
+                <c:if test="${empty MessageView2.set}"><h:outputText value="No Match found"></h:outputText></c:if>
+                <h:message for=""></h:message>
+                <c:if test="${not empty MessageView2.setofr}"> 
+                    <h:dataTable border="1" value="#{MessageView2.setofr}" var="entry" rows="5" >
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Recent Searches"/>
+                    </f:facet>
+                    <h:dataTable value="#{entry}" var="values" >
+                        <h:column>
+                            <h:dataTable value="#{values.value}" var="num" >
+                                <h:column>
+                                    <h:outputLink value="#{num}" ><h:outputText value="#{num}"/></h:outputLink>
+                                </h:column>
+                            </h:dataTable>
+                        </h:column>
+                    </h:dataTable>
+                </h:column>
+                     </h:dataTable>
+                </c:if>
+        </h:form>
+        </f:view>
+        </center>
+    </h:body>
+</html>
+

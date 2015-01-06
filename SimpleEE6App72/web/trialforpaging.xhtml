@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <style type="text/css">
+       body{
+        font: 16px cursive;
+        text-decoration: bold;
+       }</style>
+        <title>List Of URLs</title>
+    </h:head>
+    <center>
+            <h:form>
+    <h:body>
+
+        <h:outputLabel value="List Of Circular shifted URLs" />
+        <br/>
+        <h:selectOneMenu value="#{TrialBean1.pageSize}" onchange="submit()"
+                         valueChangeListener="#{TrialBean1.valueChangeMethod}">
+            <f:selectItems value="#{TrialBean1.values}" />
+        </h:selectOneMenu>
+        <h:outputText escape="false" value="Empty List" rendered="#{TrialBean1.dtmdl.rowCount==0}"/>
+             <h:panelGroup rendered="#{TrialBean1.getdtmdl()!=null}" id="panel" > 
+                 <h:outputText   value="#{TrialBean1.pagination.pageFirstItem + 1}..#{TrialBean1.pagination.pageLastItem + 1}/#{TrialBean1.pagination.itemsCount}"/>&nbsp;
+                 <h:commandLink action="#{TrialBean1.previous}" value="Previous #{TrialBean1.pagination.pageSize}" />&nbsp;
+                 <h:commandLink action="#{TrialBean1.next}" value="Next #{TrialBean1.pagination.pageSize}" />&nbsp;
+                 <h:dataTable value="#{TrialBean1.dtmdl}" var="v" border="1" >
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Decription"/>
+                </f:facet>
+                <h:outputText value="#{v.message}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="URL"/>
+                </f:facet>
+                <h:outputLink value="#{v.URL}" > <h:outputText value="#{v.URL}"/></h:outputLink>
+            </h:column>
+            
+        </h:dataTable>
+         </h:panelGroup>
+    </h:body>
+            </h:form>
+    </center>
+</html>
+

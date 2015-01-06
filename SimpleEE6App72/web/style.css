@@ -1,0 +1,11 @@
+/* 
+    Document   : style.css
+    Created on : 27-Nov-2014, 22:45:47
+    Author     : Vivek Parekh
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.panelGridCenter {
+    margin: 0 auto;
+    text-align: center;
+}
